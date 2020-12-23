@@ -1,4 +1,7 @@
 FROM alpine:3.10
+ARG VCS_REF
+LABEL org.label-schema.vcs-ref=$VCS_REF \
+          org.label-schema.vcs-url="https://github.com/lastbyte32/docker-alpine-php"
 
 RUN apk -U upgrade && apk add --no-cache \
     curl \
