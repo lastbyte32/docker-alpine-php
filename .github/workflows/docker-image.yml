@@ -18,7 +18,7 @@ jobs:
       run: docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_PASSWORD }}
 
     - name: Build the Docker image
-      run: docker build --build-arg VCS_REF=`git rev-parse --short HEAD` -t lastbyte32/alpine-php:latest .
+      run: docker build --build-arg VCS_REF=`git rev-parse --short HEAD` -t lastbyte32/alpine-web:latest .
 
     - name: Push Docker image to Docker Hub
       run: docker push lastbyte32/alpine-web:latest
