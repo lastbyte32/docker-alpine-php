@@ -2,7 +2,7 @@ FROM alpine:3.10
 ARG VCS_REF
 LABEL org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url="https://github.com/lastbyte32/docker-alpine-php"
-
+      
 RUN apk -U upgrade && apk add --no-cache \
     curl \
     nginx \
@@ -42,6 +42,7 @@ RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/co
 COPY conf/general conf/php7 /
 RUN curl -sL -o /tmp/s6-overlay-amd64.tar.gz https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-amd64.tar.gz && \
     tar zxf /tmp/s6-overlay-amd64.tar.gz -C /
+    
 # Enable options supported by this version of PHP-FPM
 RUN sed '/decorate_workers_output/s/^; //g' /etc/php7/php-fpm.conf
 
