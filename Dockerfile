@@ -39,7 +39,7 @@ RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/co
    # \
    # && ln -s /usr/bin/php7 /usr/bin/php
 
-COPY docker/files/general docker/files/php7 /
+COPY conf/general conf/php7 /
 RUN curl -sL -o /tmp/s6-overlay-amd64.tar.gz https://github.com/just-containers/s6-overlay/releases/download/v1.22.1.0/s6-overlay-amd64.tar.gz && \
     tar zxf /tmp/s6-overlay-amd64.tar.gz -C /
 # Enable options supported by this version of PHP-FPM
