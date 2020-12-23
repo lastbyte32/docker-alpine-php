@@ -48,3 +48,10 @@ RUN sed '/decorate_workers_output/s/^; //g' /etc/php7/php-fpm.conf
 
 # See https://github.com/docker-library/php/issues/240
 ENV LD_PRELOAD /usr/lib/preloadable_libiconv.so php
+
+
+ENTRYPOINT ["/init"]
+
+EXPOSE 80
+
+HEALTHCHECK --interval=5s --timeout=5s CMD curl -f http://127.0.0.1/php-fpm-ping || exit 1
