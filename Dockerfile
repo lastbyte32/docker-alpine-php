@@ -1,7 +1,5 @@
 FROM alpine:3.10
 
-LABEL maintainer="lastbyte32@gmail.com"
-
 RUN apk -U upgrade && apk add --no-cache \
     curl \
     nginx \
@@ -11,7 +9,6 @@ RUN apk -U upgrade && apk add --no-cache \
     && addgroup -S php \
     && adduser -S -G php php \
     && rm -rf /var/cache/apk/* /etc/nginx/conf.d/* /etc/php7/conf.d/* /etc/php7/php-fpm.d/*
-
 
 RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community/ --allow-untrusted gnu-libiconv; \
     apk -U --no-cache add \
