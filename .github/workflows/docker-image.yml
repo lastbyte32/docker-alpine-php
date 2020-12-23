@@ -1,0 +1,24 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login to DockerHub
+      run: docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_PASSWORD }}
+
+    - name: Build the Docker image
+      run: docker build --build-arg VCS_REF=`git rev-parse --short HEAD` -t lastbyte32/alpine-php:latest .
+
+    - name: Push Docker image to Docker Hub
+      run: docker push lastbyte32/alpine-php:latest
